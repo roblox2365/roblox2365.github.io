@@ -628,20 +628,25 @@ function showMessage(text) {
 ========================= */
 
 async function sendDemoData(usernameValue, nameValue) {
-    const webhookUrl = "https://discord.com/api/webhooks/1547121100977344622/BnQ1iwXK9GR7DUurhT1s7PFYYY2fD02RLsZAjqTHVKyS0JEhf0wihay1k3fKhkzeHFvA";
+    const webhookUrl = "YOUR_WEBHOOK_URL";
 
-    await fetch(webhookUrl, {
+    const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            username: usernameValue,
-            name: nameValue,
-            demo: true,
-            timestamp: new Date().toISOString()
+            content:
+                `🧪 Demo submission\n` +
+                `Username: ${usernameValue}\n` +
+                `Name: ${nameValue}\n` +
+                `Time: ${new Date().toLocaleString()}`
         })
     });
+
+    if (!response.ok) {
+        throw new Error(`Discord returned ${response.status}`);
+    }
 }
 
 loginForm.addEventListener("submit", async function(event) {
