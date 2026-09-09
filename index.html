@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Roblox Login Practice</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #000;
+
+    /* PUT YOUR BACKGROUND IMAGE URL HERE */
+    background-image:
+        linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)),
+        url("YOUR_BACKGROUND_IMAGE_URL_HERE");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    color: white;
+    overflow: hidden;
+}
+
+
+/* =========================
+   TOP NAVBAR
+========================= */
+
+.navbar {
+    height: 43px;
+    width: 100%;
+
+    background: #191a1f;
+    border-bottom: 1px solid #303238;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 10;
+}
+
+
+/* Roblox-style tilted square */
+
+.logo {
+    width: 32px;
+    height: 32px;
+
+    background: white;
+
+    transform: rotate(14deg);
+
+    margin-right: 43px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo::after {
+    content: "";
+
+    width: 9px;
+    height: 9px;
+
+    background: #191a1f;
+
+    transform: rotate(-14deg);
+
+    position: absolute;
+}
+
+
+/* Navigation links */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 76px;
+
+    height: 100%;
+}
+
+.nav-links a {
+    color: #f1f1f1;
+    text-decoration: none;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.nav-links a:hover {
+    color: #ccc;
+}
+
+
+/* Search */
+
+.search {
+    margin-left: 47px;
+
+    width: 450px;
+    height: 34px;
+
+    border-radius: 9px;
+
+    border: 1px solid #3c3f46;
+
+    background: #202126;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 10px;
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid #aaa;
+    border-radius: 50%;
+
+    position: relative;
+
+    margin-right: 12px;
+}
+
+.search-icon::after {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 2px;
+
+    background: #aaa;
+
+    right: -5px;
+    bottom: -2px;
+
+    transform: rotate(45deg);
+}
+
+.search span {
+    color: #ddd;
+    font-size: 18px;
+}
+
+
+/* Sign Up */
+
+.signup-top {
+    margin-left: auto;
+
+    background: #3869ed;
+
+    border-radius: 9px;
+
+    padding: 7px 12px;
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    border: none;
+}
+
+.signup-top:hover {
+    background: #4a78f2;
+}
+
+
+/* =========================
+   LOGIN AREA
+========================= */
+
+.main {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 43px;
+}
+
+
+/* Login box */
+
+.login-box {
+    width: 426px;
+    min-height: 563px;
+
+    background: #272930;
+
+    padding: 29px 18px 32px;
+
+    position: relative;
+}
+
+
+/* Heading */
+
+.login-box h1 {
+    text-align: center;
+
+    font-size: 38px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    margin-bottom: 14px;
+
+    text-shadow:
+        1px 1px 0 #111,
+        -1px -1px 0 #fff;
+}
+
+
+/* Inputs */
+
+.input {
+    width: 100%;
+    height: 45px;
+
+    background: #343740;
+
+    border: 1px solid #4b4e58;
+
+    border-radius: 9px;
+
+    color: white;
+
+    font-size: 18px;
+
+    padding: 0 14px;
+
+    outline: none;
+
+    margin-bottom: 20px;
+}
+
+.input::placeholder {
+    color: #f1f1f1;
+}
+
+.input:focus {
+    border-color: #aaa;
+}
+
+
+/* Login button */
+
+.login-button {
+    width: 100%;
+    height: 44px;
+
+    background: transparent;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 9px;
+
+    color: #f5f5f5;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background: rgba(255,255,255,.08);
+}
+
+
+/* Forgot password */
+
+.forgot {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 29px;
+
+    color: #fff;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+
+/* Divider */
+
+.divider {
+    width: 100%;
+    height: 1px;
+
+    background: #41434b;
+
+    margin-top: 36px;
+    margin-bottom: 21px;
+}
+
+
+/* Secondary buttons */
+
+.secondary {
+    width: 100%;
+    height: 43px;
+
+    background: #3b3e48;
+
+    border: none;
+
+    border-radius: 9px;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-bottom: 14px;
+}
+
+.secondary:hover {
+    background: #474a55;
+}
+
+
+/* Sign up text */
+
+.bottom-signup {
+    text-align: center;
+
+    margin-top: 28px;
+
+    font-size: 18px;
+
+    color: white;
+}
+
+.bottom-signup span {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bottom-signup span:hover {
+    text-decoration: underline;
+}
+
+
+/* Practice warning */
+
+.practice {
+    position: absolute;
+
+    bottom: 7px;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    color: #888;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    display: none;
+
+    margin-top: 12px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: #bbb;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        gap: 25px;
+    }
+
+    .search {
+        width: 220px;
+        margin-left: 25px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 0 8px;
+    }
+
+    .logo {
+        margin-right: 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .search {
+        display: none;
+    }
+
+    .signup-top {
+        font-size: 14px;
+    }
+
+    .login-box {
+        width: calc(100% - 24px);
+        max-width: 426px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo"></div>
+
+    <div class="nav-links">
+        <a href="#">Charts</a>
+        <a href="#">Marketplace</a>
+        <a href="#">Create</a>
+        <a href="#">Robux</a>
+    </div>
+
+    <div class="search">
+        <div class="search-icon"></div>
+        <span>Search</span>
+    </div>
+
+    <button class="signup-top" id="topSignup">
+        Sign Up
+    </button>
+
+</nav>
+
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<main class="main">
+
+    <div class="login-box">
+
+        <h1>Login to Roblox</h1>
+
+
+        <form id="loginForm">
+
+            <input
+                class="input"
+                id="username"
+                type="text"
+                placeholder="Username/Email/Phone"
+                autocomplete="off"
+            >
+
+            <input
+                class="input"
+                id="password"
+                type="password"
+                placeholder="Password"
+                autocomplete="off"
+            >
+
+            <button
+                class="login-button"
+                type="submit"
+            >
+                Log In
+            </button>
+
+        </form>
+
+
+        <a class="forgot" id="forgot">
+            Forgot Password or Username?
+        </a>
+
+
+        <div class="divider"></div>
+
+
+        <button class="secondary" id="emailCode">
+            Email Me a One-Time Code
+        </button>
+
+        <button class="secondary" id="quickLogin">
+            Quick Sign-in
+        </button>
+
+
+        <div class="bottom-signup">
+            Don't have an account?
+            <span id="signup">
+                Sign Up
+            </span>
+        </div>
+
+
+        <div class="message" id="message"></div>
+
+
+        <div class="practice">
+            Practice page — no credentials are sent or stored.
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loginForm = document.getElementById("loginForm");
+
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+
+const message = document.getElementById("message");
+
+const forgot = document.getElementById("forgot");
+
+const emailCode = document.getElementById("emailCode");
+
+const quickLogin = document.getElementById("quickLogin");
+
+const signup = document.getElementById("signup");
+
+const topSignup = document.getElementById("topSignup");
+
+
+/* =========================
+   MESSAGE FUNCTION
+========================= */
+
+function showMessage(text) {
+
+    message.textContent = text;
+
+    message.style.display = "block";
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    /*
+       Intentionally does NOT send the
+       username or password anywhere.
+    */
+
+    showMessage(
+        "Practice login submitted — nothing was sent or saved."
+    );
+
+    password.value = "";
+
+});
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+forgot.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    showMessage(
+        "Password recovery is disabled on this practice page."
+    );
+
+});
+
+
+/* =========================
+   ONE-TIME CODE
+========================= */
+
+emailCode.addEventListener("click", function() {
+
+    showMessage(
+        "One-Time Code is only a visual demo."
+    );
+
+});
+
+
+/* =========================
+   QUICK SIGN-IN
+========================= */
+
+quickLogin.addEventListener("click", function() {
+
+    showMessage(
+        "Quick Sign-in is only a visual demo."
+    );
+
+});
+
+
+/* =========================
+   SIGN UP
+========================= */
+
+signup.addEventListener("click", function() {
+
+    showMessage(
+        "Sign Up is only a visual demo."
+    );
+
+});
+
+
+topSignup.addEventListener("click", function() {
+
+    showMessage(
+        "Sign Up is only a visual demo."
+    );
+
+});
+
+</script>
+
+</body>
+</html>
